@@ -1,7 +1,7 @@
 export const CARD_DETAILS = [
   {
     id: "1",
-    title: "Toilet Paper",
+    title: "Paper",
     amount: 94.12,
     info: "cfagcvhbs",
   },

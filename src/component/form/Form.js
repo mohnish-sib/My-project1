@@ -1,37 +1,44 @@
 import React, { useState } from "react";
 import "./Form.css";
 
-export default function FormComp() {
+const digitRegex =  /^\d+$/;
+
+export default function FormComp(props) {
   const [userInput, setUserInput] = useState({
-    name: "",
-    detail: "",
+    title: "",
+    info: "",
     amount: "",
   });
 
-  const nameChange = (e) => {
+  const titleChange = (e) => {
     setUserInput((prevState) => {
-      return { ...prevState, name: e.target.value };
+      return { ...prevState, title: e.target.value };
     });
   };
 
-  const detailChange = (e) => {
+  const infoChange = (e) => {
     setUserInput((prevState) => {
-        return { ...prevState, detail: e.target.value };
-      });
+      return { ...prevState, info: e.target.value };
+    });
   };
 
   const amountChange = (e) => {
+    if(!digitRegex.test(e.target.value)) return;
     setUserInput((prevState) => {
-        return { ...prevState, amount: e.target.value };
-      });
+      return { ...prevState, amount: e.target.value };
+    });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault(); // stops page from reload after submit
-    alert(`Entered value is ${userInput.name}`);
+
+    props.setDetails((prevState) => {
+        return [userInput , ...prevState];
+    });
+
     setUserInput({
-      name: "",
-      detail: "",
+      title: "",
+      info: "",
       amount: "",
     });
   };
@@ -45,16 +52,18 @@ export default function FormComp() {
             <label>Name of item </label>
             <input
               type="text"
-              value={userInput.name}
-              onChange={nameChange}
+              value={userInput.title}
+              onChange={titleChange}
+              autoFocus
             ></input>
           </div>
           <div className="formItem">
             <label>Details </label>
             <input
               type="text"
-              value={userInput.detail}
-              onChange={detailChange}
+              value={userInput.info}
+              onChange={infoChange}
+              inputMode="numeric"
             ></input>
           </div>
           <div className="formItem">
@@ -71,8 +80,8 @@ export default function FormComp() {
           className="submitBtn"
           disabled={
             !(
-              userInput.name.trim() &&
-              userInput.detail.trim() &&
+              userInput.title.trim() &&
+              userInput.info.trim() &&
               userInput.amount.trim()
             )
           }
