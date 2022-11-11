@@ -1,0 +1,33 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+.cardContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 10rem;
+    width: 10rem;
+    border: 2px #000 bold;
+    border-radius: 12px;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+    margin: 2rem;
+    background-color: cadetblue;
+}
+.itemName{
+    padding: 0.5rem;
+}
+.subHeading{
+    padding: 2px;
+    height: 40%;
+}
+.price{
+    height: 30%;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* align-self: flex-end;
+    justify-self: flex-end; */
+}

@@ -1,6 +1,15 @@
 .form{
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.submitBtn{
+    width: 5rem;
+}
+.formItem{
+    padding: 1rem;
+}
+.formHeading{
+    padding: 1rem;
 }
