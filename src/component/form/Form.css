@@ -4,8 +4,14 @@
     align-items: center;
     justify-content: space-between;
 }
-.submitBtn{
-    width: 5rem;
+.btnRow{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.btnClass{
+    margin: 4px;
 }
 .formItem{
     padding: 1rem;

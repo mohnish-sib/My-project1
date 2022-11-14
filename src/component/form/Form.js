@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { Button } from "@dtsl/react";
 import "./Form.css";
 
-const digitRegex =  /^\d+$/;
+const digitRegex = /^\d+$/;
 
 export default function FormComp(props) {
   const [userInput, setUserInput] = useState({
@@ -23,17 +24,18 @@ export default function FormComp(props) {
   };
 
   const amountChange = (e) => {
-    if(!digitRegex.test(e.target.value)) return;
-    setUserInput((prevState) => {
-      return { ...prevState, amount: e.target.value };
-    });
+    if (digitRegex.test(e.target.value) || !e.target.value) {
+      setUserInput((prevState) => {
+        return { ...prevState, amount: e.target.value };
+      });
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault(); // stops page from reload after submit
 
     props.setDetails((prevState) => {
-        return [userInput , ...prevState];
+      return [{ id: props.details.length + 1, ...userInput }, ...prevState];
     });
 
     setUserInput({
@@ -41,6 +43,10 @@ export default function FormComp(props) {
       info: "",
       amount: "",
     });
+  };
+
+  const handleCancel = () => {
+    props.setShowFrom((prevState) => !prevState);
   };
 
   return (
@@ -75,19 +81,26 @@ export default function FormComp(props) {
             ></input>
           </div>
         </div>
-        <button
-          type="submit"
-          className="submitBtn"
-          disabled={
-            !(
-              userInput.title.trim() &&
-              userInput.info.trim() &&
-              userInput.amount.trim()
-            )
-          }
-        >
-          Submit
-        </button>
+        <div className="btnRow">
+          <Button
+            onClick={handleCancel}
+            className="btnClass"
+            label="Cancel"
+            variant="tertiary"
+          />
+          <Button
+            type="submit"
+            label="Submit"
+            className="btnClass"
+            disabled={
+              !(
+                userInput.title.trim() &&
+                userInput.info.trim() &&
+                userInput.amount.trim()
+              )
+            }
+          />
+        </div>
       </form>
     </>
   );
