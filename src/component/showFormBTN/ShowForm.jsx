@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "@dtsl/react";
+import { Button, Inputbox } from "@dtsl/react";
 import "./ShowForm.css";
 
 export default function ShowForm(props) {
@@ -15,11 +15,12 @@ export default function ShowForm(props) {
 
   return (
     <div className="showForm">
-      <input
+      <Inputbox 
+        placeholder="Search"
+        inputType="search"  
         className="searchInput"
         value={searchInput}
         onChange={handleSearch}
-        placeholder="Search"
         autoFocus
       />
       <Button onClick={showForm} label="Show Form" />

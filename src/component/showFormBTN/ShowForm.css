@@ -1,10 +1,11 @@
 .showForm {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   height: 20vh;
   width: 100%;
 }
 .searchInput{
-  margin-right: 0.5rem;
+  /* margin-right: 0.5rem; */
+  border-radius: 0.5rem;
 }

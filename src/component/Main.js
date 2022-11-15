@@ -22,12 +22,10 @@ function Main() {
 
   return (
     <>
-      <div className="sib-typo_heading-xl">hello world!</div>
+      <div className="sib-typo_heading-xl">Welcome!</div>
       {!showFrom ? (
         <ShowForm
           setShowFrom={setShowFrom}
-          details={searchedData}
-          setDetails={setSearchedData}
           searchInput={searchInput}
           setSearchInput={setSearchInput}
         />
