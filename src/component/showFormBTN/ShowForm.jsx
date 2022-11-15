@@ -3,13 +3,26 @@ import { Button } from "@dtsl/react";
 import "./ShowForm.css";
 
 export default function ShowForm(props) {
-  const handleClick = () => {
-    props.setShowFrom((prevState) => !prevState);
+  const { setShowFrom, searchInput, setSearchInput } = props;
+
+  const showForm = () => {
+    setShowFrom((prevState) => !prevState);
+  };
+
+  const handleSearch = (e) => {
+    setSearchInput(e.target.value);
   };
 
   return (
     <div className="showForm">
-      <Button onClick={handleClick} label="Show Form" />
+      <input
+        className="searchInput"
+        value={searchInput}
+        onChange={handleSearch}
+        placeholder="Search"
+        autoFocus
+      />
+      <Button onClick={showForm} label="Show Form" />
     </div>
   );
 }

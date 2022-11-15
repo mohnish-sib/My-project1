@@ -1,28 +1,46 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Card from "./card/Card";
 import { CARD_DETAILS } from "./details/Details";
 import FormComp from "./form/Form";
 import "../App.css";
 import ShowForm from "./showFormBTN/ShowForm";
-import PlusCircle from '@dtsl/icons/dist/icons/react/PlusCircle';
 
 function Main() {
   const [details, setDetails] = useState(CARD_DETAILS);
+  const [searchedData, setSearchedData] = useState(details);
 
   const [showFrom, setShowFrom] = useState(false);
+  const [searchInput, setSearchInput] = useState("");
+
+  useEffect(() => {
+    setSearchedData(
+      details.filter((item) =>
+        item.title.toLowerCase().includes(searchInput.toLowerCase())
+      )
+    );
+  }, [details, searchInput]);
 
   return (
     <>
-    {/* <PlusCircle /> */}
-    <div className="sib-typo_heading-xl" >hello world!</div>
+      <div className="sib-typo_heading-xl">hello world!</div>
       {!showFrom ? (
-        <ShowForm setShowFrom={setShowFrom} />
+        <ShowForm
+          setShowFrom={setShowFrom}
+          details={searchedData}
+          setDetails={setSearchedData}
+          searchInput={searchInput}
+          setSearchInput={setSearchInput}
+        />
       ) : (
-        <FormComp setDetails={setDetails} details={details} setShowFrom={setShowFrom} />
+        <FormComp
+          setDetails={setDetails}
+          details={details}
+          setShowFrom={setShowFrom}
+        />
       )}
 
       <div className="cards-container">
-        {details.map((child, idx) => (
+        {searchedData.map((child, idx) => (
           <Card
             key={child.id}
             title={child.title}
