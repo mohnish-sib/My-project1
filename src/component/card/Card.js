@@ -1,5 +1,5 @@
 import React from "react";
-import "./Card.css";
+import styles from "./Card.module.css";
 
 export default function Card(props) {
   const deleteItem = () => {
@@ -12,18 +12,18 @@ export default function Card(props) {
 
   return (
     <div
-      className="cardContainer"
+      className={`${styles.cardContainer}`}
       onClick={deleteItem}
-      style={{ backgroundImage: `url(${props.img})`, backgroundSize: "cover" }}
+      style={{background:`linear-gradient(0deg, rgba(244, 215, 39, 0.3), rgba(189, 216, 230, 0.3)), url(${props.img})`, backgroundSize: "cover" }}
     >
-      <h3 className="itemName">{props.title}</h3>
+      <div className={`${styles.itemName} sib-typo_heading-sm`}>{props.title}</div>
       <p
-        className="subHeading"
+        className={`${styles.subHeading} sib-typo_heading-xs`}
         //   contentEditable="true" spellCheck="true"
       >
-        {props.info}
+        {props.brand}
       </p>
-      <h4 className="price">Rs.{props.amount}</h4>
+      <h4 className={`${styles.price} sib-typo_heading-sm`}>Rs.{props.amount}</h4>
     </div>
   );
 }

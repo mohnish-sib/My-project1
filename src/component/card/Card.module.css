@@ -14,7 +14,7 @@
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
     margin: 2rem;
     background-color: var(--sib-color_surface-hover-background);
-    /* cursor: pointer; */
+    cursor: pointer;
 }
 .itemName{
     padding: 0.5rem;

@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { Button } from "@dtsl/react";
-import "./Form.css";
+import { Button, Form, Inputbox } from "@dtsl/react";
+import styles from "./Form.module.css";
 
 const digitRegex = /^\d+$/;
 
 export default function FormComp(props) {
   const [userInput, setUserInput] = useState({
     title: "",
-    info: "",
+    brand: "",
     amount: "",
   });
 
@@ -17,9 +17,9 @@ export default function FormComp(props) {
     });
   };
 
-  const infoChange = (e) => {
+  const brandChange = (e) => {
     setUserInput((prevState) => {
-      return { ...prevState, info: e.target.value };
+      return { ...prevState, brand: e.target.value };
     });
   };
 
@@ -40,7 +40,7 @@ export default function FormComp(props) {
 
     setUserInput({
       title: "",
-      info: "",
+      brand: "",
       amount: "",
     });
   };
@@ -51,57 +51,66 @@ export default function FormComp(props) {
 
   return (
     <>
-      <h2 className="formHeading">Add New Items</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form">
-          <div className="formItem">
-            <label>Name of item </label>
-            <input
-              type="text"
-              value={userInput.title}
+      <h2 className={`${styles.formHeading} sib-typo_text-interactive`}>
+        Add New Items
+      </h2>
+      <Form className={styles.form} onSubmit={handleSubmit}>
+        <div className={styles.form}>
+          <div className={styles.formItem}>
+            <Inputbox
+              labelText="Name of item"
+              requiredLabel
+              placeholder="Enter item name"
               onChange={titleChange}
-              autoFocus
-            ></input>
+              value={userInput.title}
+              inputType="text"
+              className={styles.searchInput}
+            />
           </div>
-          <div className="formItem">
-            <label>Details </label>
-            <input
-              type="text"
-              value={userInput.info}
-              onChange={infoChange}
-              inputMode="numeric"
-            ></input>
+          <div className={styles.formItem}>
+            <Inputbox
+              labelText="Details"
+              requiredLabel
+              placeholder="Enter details"
+              onChange={brandChange}
+              value={userInput.brand}
+              inputType="text"
+              className={styles.searchInput}
+            />
           </div>
-          <div className="formItem">
-            <label>Enter price </label>
-            <input
-              type="text"
-              value={userInput.amount}
+          <div className={styles.formItem}>
+            <Inputbox
+              labelText="Price"
+              requiredLabel
+              placeholder="Enter price"
               onChange={amountChange}
-            ></input>
+              value={userInput.amount}
+              inputType="text"
+              className={styles.searchInput}
+            />
           </div>
         </div>
-        <div className="btnRow">
+        <div className={styles.btnRow}>
           <Button
             onClick={handleCancel}
-            className="btnClass"
+            className={styles.btnClass}
             label="Cancel"
             variant="tertiary"
           />
           <Button
             type="submit"
             label="Submit"
-            className="btnClass"
+            className={styles.btnClass}
             disabled={
               !(
                 userInput.title.trim() &&
-                userInput.info.trim() &&
+                userInput.brand.trim() &&
                 userInput.amount.trim()
               )
             }
           />
         </div>
-      </form>
+      </Form>
     </>
   );
 }

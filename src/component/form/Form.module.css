@@ -15,7 +15,11 @@
 }
 .formItem{
     padding: 1rem;
+    border-radius: 0.5rem;
 }
 .formHeading{
     padding: 1rem;
 }
+.searchInput{
+    border-radius: 0.5rem;
+  }

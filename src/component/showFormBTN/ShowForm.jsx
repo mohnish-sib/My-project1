@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Inputbox } from "@dtsl/react";
-import "./ShowForm.css";
+import styles from "./ShowForm.module.css";
 
 export default function ShowForm(props) {
   const { setShowFrom, searchInput, setSearchInput } = props;
@@ -14,11 +14,11 @@ export default function ShowForm(props) {
   };
 
   return (
-    <div className="showForm">
+    <div className={styles.showForm}>
       <Inputbox 
         placeholder="Search"
         inputType="search"  
-        className="searchInput"
+        className={styles.searchInput}
         value={searchInput}
         onChange={handleSearch}
         autoFocus
