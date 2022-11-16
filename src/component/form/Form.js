@@ -51,7 +51,7 @@ export default function FormComp(props) {
 
   return (
     <>
-      <h2 className="formHeading">Make a card:</h2>
+      <h2 className="formHeading">Add New Items</h2>
       <form onSubmit={handleSubmit}>
         <div className="form">
           <div className="formItem">
