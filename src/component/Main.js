@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
-import Card from "./card/Card";
-import FormComp from "./form/Form";
+import FormComp from "./form";
 import styles from "../App.module.css";
-import ShowForm from "./showFormBTN/ShowForm";
+import ShowForm from "./showFormBTN";
+import CardList from "./cardList";
 
 function Main() {
   const [details, setDetails] = useState([]);
@@ -11,12 +11,11 @@ function Main() {
 
   const fetchData = useCallback(async () => {
     setIsLoading(true);
-    console.log(isLoading);     // here also state is not changing immediately, but it is working down there! how????
+    // console.log(isLoading);     // here also state is not changing immediately, but it is working down there! how????
 
     const response = await fetch("https://dummyjson.com/products");
 
     const data = await response.json();
-
 
     const ourData = data.products.map((item) => {
       return {
@@ -50,7 +49,7 @@ function Main() {
   }, [details, searchInput]);
 
   return (
-    <>
+    <div className={styles.mainConatiner}>
       <div className="sib-typo_heading-xl">Welcome!</div>
       {!showFrom ? (
         <ShowForm
@@ -65,24 +64,12 @@ function Main() {
           setShowFrom={setShowFrom}
         />
       )}
-      {isLoading ? (
-        <h1>Loading...</h1>
-      ) : (
-        <div className={styles.cardsContainer}>
-          {searchedData.map((child, idx) => (
-            <Card
-              key={child.id}
-              title={child.title}
-              amount={child.amount}
-              brand={child.brand}
-              setDetails={setDetails}
-              id={child.id}
-              img={child.img}
-            />
-          ))}
-        </div>
-      )}
-    </>
+      <CardList
+        isLoading={isLoading}
+        searchedData={searchedData}
+        setDetails={setDetails}
+      />
+    </div>
   );
 }
 

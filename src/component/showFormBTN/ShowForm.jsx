@@ -15,12 +15,15 @@ export default function ShowForm(props) {
 
   return (
     <div className={styles.showForm}>
-      <Inputbox 
+      <Inputbox
         placeholder="Search"
-        inputType="search"  
+        inputType="search"
         className={styles.searchInput}
         value={searchInput}
         onChange={handleSearch}
+        onReset={() => {
+          setSearchInput("");
+        }}
         autoFocus
       />
       <Button onClick={showForm} label="Show Form" />
