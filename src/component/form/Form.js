@@ -33,9 +33,10 @@ export default function FormComp(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault(); // stops page from reload after submit
+    props.setItemId((prevState) => prevState + 1);
 
     props.setDetails((prevState) => {
-      return [{ id: props.details.length + 1, ...userInput }, ...prevState];
+      return [{ id: props.itemId, ...userInput }, ...prevState];
     });
 
     setUserInput({
@@ -54,7 +55,7 @@ export default function FormComp(props) {
       <h2 className={`${styles.formHeading} sib-typo_text-interactive`}>
         Add New Items
       </h2>
-      <Form className={styles.form} onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <div className={styles.form}>
           <div className={styles.formItem}>
             <Inputbox
@@ -64,7 +65,7 @@ export default function FormComp(props) {
               onChange={titleChange}
               value={userInput.title}
               inputType="text"
-              className={styles.searchInput}
+              className={styles.inputbox}
             />
           </div>
           <div className={styles.formItem}>
@@ -75,7 +76,7 @@ export default function FormComp(props) {
               onChange={brandChange}
               value={userInput.brand}
               inputType="text"
-              className={styles.searchInput}
+              className={styles.inputbox}
             />
           </div>
           <div className={styles.formItem}>
@@ -86,7 +87,7 @@ export default function FormComp(props) {
               onChange={amountChange}
               value={userInput.amount}
               inputType="text"
-              className={styles.searchInput}
+              className={styles.inputbox}
             />
           </div>
         </div>

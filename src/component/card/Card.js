@@ -4,8 +4,8 @@ import Xcircle from "@dtsl/icons/dist/icons/react/Xcircle";
 
 export default function Card(props) {
   const deleteItem = () => {
-    props.setDetails((prevGoals) => {
-      const updatedGoals = prevGoals.filter((goal) => goal.id !== props.id);
+    props.setDetails((prev) => {
+      const updatedGoals = prev.filter((item) => item.id !== props.id);
       return updatedGoals;
     });
     console.log("delete", props.id);
@@ -15,7 +15,7 @@ export default function Card(props) {
     <div
       className={`${styles.cardContainer}`}
       style={{
-        background: `linear-gradient(0deg, rgba(244, 215, 39, 0.3), rgba(189, 216, 230, 0.3)), url(${props.img})`,
+        background: `linear-gradient(0deg, rgb(120 107 166 / 82%), rgba(189, 216, 230, 0.3)), url(${props.img})`,
         backgroundSize: "cover",
       }}
     >

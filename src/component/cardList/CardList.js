@@ -19,7 +19,7 @@ export default function CardList(props) {
         <h1>Loading...</h1>
       ) : (
         <div className={styles.cardsContainer}>
-          {searchedData.map((child, idx) => (
+          {searchedData.map((child) => (
             <Card
               key={child.id}
               title={child.title}

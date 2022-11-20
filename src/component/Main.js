@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
 import FormComp from "./form";
-import styles from "../App.module.css";
 import ShowForm from "./showFormBTN";
 import CardList from "./cardList";
 
@@ -9,9 +8,10 @@ function Main() {
 
   const [isLoading, setIsLoading] = useState(false);
 
+  const [itemId, setItemId] = useState(0);
+
   const fetchData = useCallback(async () => {
     setIsLoading(true);
-    // console.log(isLoading);     // here also state is not changing immediately, but it is working down there! how????
 
     const response = await fetch("https://dummyjson.com/products");
 
@@ -26,6 +26,8 @@ function Main() {
         img: item.thumbnail,
       };
     });
+
+    setItemId(ourData.length + 1);
     setDetails(ourData);
 
     setIsLoading(false);
@@ -40,16 +42,20 @@ function Main() {
   const [showFrom, setShowFrom] = useState(false);
   const [searchInput, setSearchInput] = useState("");
 
-  useEffect(() => {
+  const filterData = useCallback(() => {
     setSearchedData(
       details.filter((item) =>
         item.title.toLowerCase().includes(searchInput.toLowerCase())
       )
     );
-  }, [details, searchInput]);
+  }, [searchInput, details]);
+
+  useEffect(() => {
+    filterData();
+  }, [searchInput, details, filterData]);
 
   return (
-    <div className={styles.mainConatiner}>
+    <>
       <div className="sib-typo_heading-xl">Welcome!</div>
       {!showFrom ? (
         <ShowForm
@@ -60,7 +66,8 @@ function Main() {
       ) : (
         <FormComp
           setDetails={setDetails}
-          details={details}
+          itemId={itemId}
+          setItemId={setItemId}
           setShowFrom={setShowFrom}
         />
       )}
@@ -69,7 +76,7 @@ function Main() {
         searchedData={searchedData}
         setDetails={setDetails}
       />
-    </div>
+    </>
   );
 }
 
