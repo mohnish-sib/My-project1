@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/My-project1/static/css/main.2cecb833.css",
+    "main.css": "/My-project1/static/css/main.fac470c0.css",
     "main.js": "/My-project1/static/js/main.77060f6d.js",
     "EmojiPicker.css": "/My-project1/static/css/EmojiPicker.84e9de7c.chunk.css",
     "static/js/787.a624d270.chunk.js": "/My-project1/static/js/787.a624d270.chunk.js",
     "static/js/111.46790eef.chunk.js": "/My-project1/static/js/111.46790eef.chunk.js",
     "index.html": "/My-project1/index.html",
-    "main.2cecb833.css.map": "/My-project1/static/css/main.2cecb833.css.map",
+    "main.fac470c0.css.map": "/My-project1/static/css/main.fac470c0.css.map",
     "main.77060f6d.js.map": "/My-project1/static/js/main.77060f6d.js.map",
     "EmojiPicker.84e9de7c.chunk.css.map": "/My-project1/static/css/EmojiPicker.84e9de7c.chunk.css.map",
     "787.a624d270.chunk.js.map": "/My-project1/static/js/787.a624d270.chunk.js.map",
     "111.46790eef.chunk.js.map": "/My-project1/static/js/111.46790eef.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2cecb833.css",
+    "static/css/main.fac470c0.css",
     "static/js/main.77060f6d.js"
   ]
 }
