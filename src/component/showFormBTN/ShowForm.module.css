@@ -8,3 +8,6 @@
 .searchInput{
   border-radius: 0.5rem;
 }
+.sib-btn.sib-btn_icon-stand-alone {
+  position: absolute;
+}
