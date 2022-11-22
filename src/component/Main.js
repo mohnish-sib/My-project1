@@ -2,39 +2,17 @@ import { useCallback, useEffect, useState } from "react";
 import FormComp from "./form";
 import ShowForm from "./showFormBTN";
 import CardList from "./cardList";
+import useGetCardDetails from "../api/MakeRequest";
 
 function Main() {
   const [details, setDetails] = useState([]);
 
-  const [isLoading, setIsLoading] = useState(false);
-
   const [itemId, setItemId] = useState(0);
 
-  const fetchData = useCallback(async () => {
-    setIsLoading(true);
-
-    const response = await fetch("https://dummyjson.com/products");
-
-    const data = await response.json();
-
-    const ourData = data.products.map((item) => {
-      return {
-        id: item.id,
-        title: item.title,
-        brand: item.brand,
-        amount: item.price,
-        img: item.thumbnail,
-      };
-    });
-
-    setItemId(ourData.length + 1);
-    setDetails(ourData);
-
-    setIsLoading(false);
-  }, []);
+  const { isLoading, fetchData } = useGetCardDetails();
 
   useEffect(() => {
-    fetchData();
+    fetchData(setDetails, setItemId);
   }, [fetchData]);
 
   const [searchedData, setSearchedData] = useState(details);

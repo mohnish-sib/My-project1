@@ -1,6 +1,5 @@
-.cardsContainer{
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: center;
-  }
+.cardsContainer {
+  display: grid;
+    grid-template-columns: repeat(5,auto);
+    grid-gap: 1rem;
+}

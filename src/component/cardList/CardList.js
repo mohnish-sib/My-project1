@@ -1,11 +1,9 @@
 import React from "react";
 import Card from "../card";
-import styles from './CardList.module.css';
+import styles from "./CardList.module.css";
 
 export default function CardList(props) {
-
-    const {isLoading, searchedData,setDetails} =props;
-
+  const { isLoading, searchedData, setDetails } = props;
 
   return (
     <>
