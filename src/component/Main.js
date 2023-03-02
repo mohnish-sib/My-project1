@@ -6,16 +6,23 @@ import useGetCardDetails from "../api/MakeRequest";
 
 function Main() {
   const [details, setDetails] = useState([]);
-
   const [itemId, setItemId] = useState(0);
+  const [searchedData, setSearchedData] = useState(details);
 
   const { isLoading, fetchData } = useGetCardDetails();
+  console.log("12342",isLoading)
 
   useEffect(() => {
-    fetchData(setDetails, setItemId);
-  }, [fetchData]);
+    getData();
+  }, []);
 
-  const [searchedData, setSearchedData] = useState(details);
+  const getData = async () => {
+    const fechedData = await fetchData();
+  //  console.log(fechedData);
+    setItemId(fechedData.length + 1);
+    setDetails(fechedData);
+  }
+
 
   const [showFrom, setShowFrom] = useState(false);
   const [searchInput, setSearchInput] = useState("");
@@ -59,3 +66,4 @@ function Main() {
 }
 
 export default Main;
+

@@ -2,8 +2,8 @@ import { useCallback, useState } from "react";
 
 export default function useGetCardDetails() {
   const [isLoading, setIsLoading] = useState(false);
-
-  const fetchData = useCallback(async (setDetails, setItemId) => {
+  console.log("rendering", isLoading);
+  const fetchData = async () => {
     setIsLoading(true);
 
     const response = await fetch("https://dummyjson.com/products");
@@ -11,20 +11,22 @@ export default function useGetCardDetails() {
     const data = await response.json();
 
     const ourData = data.products.map((item) => {
+      const { id, title, brand, price: amount, thumbnail: img } = item;
       return {
-        id: item.id,
-        title: item.title,
-        brand: item.brand,
-        amount: item.price,
-        img: item.thumbnail,
+        id,
+        title,
+        brand,
+        amount,
+        img,
       };
     });
-
-    setItemId(ourData.length + 1);
-    setDetails(ourData);
-
+    console.log("jdjs", ourData);
     setIsLoading(false);
-  }, []);
+
+    return ourData;
+  };
+  
 
   return { isLoading, fetchData };
 }
+

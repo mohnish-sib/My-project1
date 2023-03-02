@@ -11,13 +11,31 @@ export default function FormComp(props) {
     amount: "",
   });
 
+  const [errors, setErrors] = useState({
+    titleError: false,
+    brandError: false,
+    amountError: false,
+  });
+
   const titleChange = (e) => {
+    if (e.target.value.trim() !== "") {
+      setErrors({
+        ...errors,
+        titleError: false,
+      });
+    }
     setUserInput((prevState) => {
       return { ...prevState, title: e.target.value };
     });
   };
 
   const brandChange = (e) => {
+    if (e.target.value.trim() !== "") {
+      setErrors({
+        ...errors,
+        brandError: false,
+      });
+    }
     setUserInput((prevState) => {
       return { ...prevState, brand: e.target.value };
     });
@@ -25,6 +43,12 @@ export default function FormComp(props) {
 
   const amountChange = (e) => {
     if (digitRegex.test(e.target.value) || !e.target.value) {
+      if (e.target.value.trim() !== "") {
+        setErrors({
+          ...errors,
+          amountError: false,
+        });
+      }
       setUserInput((prevState) => {
         return { ...prevState, amount: e.target.value };
       });
@@ -66,6 +90,16 @@ export default function FormComp(props) {
               value={userInput.title}
               inputType="text"
               className={styles.inputbox}
+              isError={errors.titleError}
+              specificationText={errors.titleError && "Can't be blank!" }
+              onBlur={() => {
+                if (userInput.title.trim() === "") {
+                  setErrors({
+                    ...errors,
+                    titleError: true,
+                  });
+                }
+              }}
             />
           </div>
           <div className={styles.formItem}>
@@ -77,6 +111,16 @@ export default function FormComp(props) {
               value={userInput.brand}
               inputType="text"
               className={styles.inputbox}
+              isError={errors.brandError}
+              specificationText={errors.brandError && "Can't be blank!" }
+              onBlur={() => {
+                if (userInput.title.trim() === "") {
+                  setErrors({
+                    ...errors,
+                    brandError: true,
+                  });
+                }
+              }}
             />
           </div>
           <div className={styles.formItem}>
@@ -88,6 +132,16 @@ export default function FormComp(props) {
               value={userInput.amount}
               inputType="text"
               className={styles.inputbox}
+              isError={errors.amountError}
+              specificationText={errors.amountError && "Can't be blank!" }
+              onBlur={() => {
+                if (userInput.title.trim() === "") {
+                  setErrors({
+                    ...errors,
+                    amountError: true,
+                  });
+                }
+              }}
             />
           </div>
         </div>
@@ -116,3 +170,4 @@ export default function FormComp(props) {
   );
 }
 /* shift + option + A */
+
