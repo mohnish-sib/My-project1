@@ -13,7 +13,11 @@ export default function Card(props) {
 
   return (
     <div
-      className={`${styles.cardContainer}`}
+      className={
+        props.isDisco
+          ? `${styles.cardContainer} ${styles.cardDisco}`
+          : `${styles.cardContainer}`
+      }
       style={{
         background: `linear-gradient(0deg, rgb(120 107 166 / 82%), rgba(189, 216, 230, 0.3)), url(${props.img})`,
         backgroundSize: "cover",

@@ -3,10 +3,14 @@ import { Button, Inputbox } from "@dtsl/react";
 import styles from "./ShowForm.module.css";
 
 export default function ShowForm(props) {
-  const { setShowFrom, searchInput, setSearchInput } = props;
+  const { setShowFrom, searchInput, setSearchInput, setIsDisco } = props;
 
   const showForm = () => {
     setShowFrom((prevState) => !prevState);
+  };
+
+  const setDisco = () => {
+    setIsDisco((prev) => !prev);
   };
 
   const handleSearch = (e) => {
@@ -27,6 +31,7 @@ export default function ShowForm(props) {
         autoFocus
       />
       <Button onClick={showForm} label="Show Form" />
+      <Button onClick={setDisco} label="Disco lights" variant="tertiary" />
     </div>
   );
 }

@@ -3,7 +3,7 @@ import Card from "../card";
 import styles from "./CardList.module.css";
 
 export default function CardList(props) {
-  const { isLoading, searchedData, setDetails } = props;
+  const { isLoading, searchedData, setDetails, isDisco } = props;
 
   return (
     <>
@@ -26,6 +26,7 @@ export default function CardList(props) {
               setDetails={setDetails}
               id={child.id}
               img={child.img}
+              isDisco={isDisco}
             />
           ))}
         </div>

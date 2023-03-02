@@ -1,13 +1,8 @@
-import styles from './App.module.css';
-import Main from './component';
-import '@dtsl/css-design-tokens/dist/index.min.css';
+import Main from "./component";
+import "@dtsl/css-design-tokens/dist/index.min.css";
 
 function App() {
-  return (
-    <div className={styles.App}>
-        <Main />
-    </div>
-  );
+  return <Main />;
 }
 
 export default App;
